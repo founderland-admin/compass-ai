@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compass AI — Investor Readiness</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+@font-face {
+  font-family: 'Hanson';
+  src: url('uploads/Hanson-Bold.ttf') format('truetype');
+  font-weight: 700;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black: #000000;
+  --white: #ffffff;
+  --off: #f8f8f6;
+  --mid: #e0dedd;
+  --muted: #888580;
+  --lime: #d7fb03;
+  --red: #f6331c;
+  --pink: #ee93b5;
+  --blue: #0063e2;
+  --font-display: 'Hanson', 'Helvetica Neue', Arial, sans-serif;
+  --font-body: 'DM Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--white);
+  color: var(--black);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── DISPLAY TYPE ───────────────────────────────────── */
+.hanson {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+
+/* ─── STICKY NAV ─────────────────────────────────────── */
+.sticky-bar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(20px, 5vw, 64px);
+  height: 60px;
+  background: rgba(0,0,0,0.97);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  transform: translateY(-100%);
+  transition: transform 0.3s ease;
+}
+.sticky-bar.visible { transform: translateY(0); }
+.sticky-logo {
+  font-family: var(--font-display);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--white);
+  text-decoration: none;
+}
+.sticky-cta {
+  background: var(--lime);
+  color: var(--black);
+  padding: 8px 20px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.2s;
+  display: inline-block;
+}
+.sticky-cta:hover { opacity: 0.85; }
+
+/* ─── LAYOUT ─────────────────────────────────────────── */
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 5vw, 64px);
+}
+.section-pad { padding: clamp(80px, 10vw, 128px) clamp(20px, 5vw, 64px); }
+.eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 16px;
+  display: block;
+}
+.eyebrow.on-dark { color: rgba(255,255,255,0.35); }
+.eyebrow.lime { color: var(--lime); }
+
+/* ─── BUTTONS ────────────────────────────────────────── */
+.btn-lime {
+  display: inline-block;
+  background: var(--lime);
+  color: var(--black);
+  padding: 14px 28px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.btn-lime:hover { opacity: 0.85; }
+.btn-lime.lg { padding: 17px 36px; font-size: 15px; }
+.btn-outline {
+  display: inline-block;
+  background: transparent;
+  color: rgba(255,255,255,0.65);
+  padding: 13px 24px;
+  font-size: 14px;
+  font-weight: 400;
+  border: 1px solid rgba(255,255,255,0.2);
+  text-decoration: none;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.btn-outline:hover { border-color: rgba(255,255,255,0.5); color: var(--white); }
+.btn-outline-dark {
+  display: inline-block;
+  background: transparent;
+  color: rgba(0,0,0,0.5);
+  padding: 13px 24px;
+  font-size: 14px;
+  border: 1px solid rgba(0,0,0,0.2);
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-outline-dark:hover { border-color: var(--black); color: var(--black); }
+
+/* ─── HERO ───────────────────────────────────────────── */
+#hero {
+  background: var(--white);
+  padding: 120px clamp(20px, 5vw, 64px) 80px;
+  border-bottom: 1px solid var(--mid);
+}
+#hero .inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+h1 {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-size: clamp(34px, 4.5vw, 58px);
+  line-height: 1.02;
+  letter-spacing: 0.01em;
+  color: var(--black);
+  margin-bottom: 22px;
+  text-wrap: pretty;
+}
+.hero-sub {
+  font-size: clamp(16px, 1.8vw, 19px);
+  line-height: 1.55;
+  color: #444;
+  max-width: 440px;
+  margin-bottom: 36px;
+  font-weight: 300;
+}
+.cta-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-bottom: 20px; }
+.hero-footnote {
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.01em;
+}
+.hero-footnote strong { color: var(--black); font-weight: 500; }
+
+/* ─── PRODUCT CARD ───────────────────────────────────── */
+.product-card {
+  background: var(--black);
+  padding: 28px;
+  border: none;
+}
+.card-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.card-dot { width: 8px; height: 8px; background: var(--lime); }
+.card-title-label {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+}
+.card-q {
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 14px;
+}
+.card-q strong { color: rgba(255,255,255,0.7); font-weight: 500; }
+.feedback-item {
+  background: rgba(255,255,255,0.03);
+  border-left: 2px solid var(--red);
+  padding: 12px 14px;
+  margin-bottom: 10px;
+}
+.feedback-item.warn { border-left-color: var(--lime); }
+.fb-tag {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+.fb-tag.warn { color: var(--lime); }
+.fb-body {
+  font-size: 13px;
+  line-height: 1.55;
+  color: rgba(255,255,255,0.55);
+}
+.fb-body strong { color: rgba(255,255,255,0.85); font-weight: 500; }
+.card-locked {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 14px;
+  border: 1px dashed rgba(255,255,255,0.12);
+  margin-top: 6px;
+}
+.lock-sq {
+  width: 14px; height: 14px;
+  border: 1.5px solid rgba(255,255,255,0.2);
+  flex-shrink: 0;
+}
+.card-locked p { font-size: 12px; color: rgba(255,255,255,0.25); }
+.card-locked p strong { color: rgba(255,255,255,0.45); font-weight: 500; }
+
+/* ─── PROBLEM ────────────────────────────────────────── */
+#problem {
+  background: var(--off);
+  padding: clamp(80px, 10vw, 128px) clamp(20px, 5vw, 64px);
+}
+#problem .inner { max-width: 1120px; margin: 0 auto; }
+.section-h2 {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-size: clamp(26px, 3.5vw, 46px);
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  text-wrap: pretty;
+}
+.section-lead {
+  font-size: clamp(15px, 1.8vw, 18px);
+  line-height: 1.6;
+  color: #555;
+  font-weight: 300;
+  max-width: 560px;
+}
+.problem-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1px;
+  background: var(--mid);
+  border: 1px solid var(--mid);
+  margin-top: 48px;
+}
+.problem-card {
+  background: var(--white);
+  padding: 32px;
+}
+.p-num {
+  font-family: var(--font-display);
+  font-size: 32px;
+  text-transform: uppercase;
+  color: var(--mid);
+  line-height: 1;
+  margin-bottom: 14px;
+  letter-spacing: -0.01em;
+}
+.problem-card h3 { font-size: 15px; font-weight: 500; margin-bottom: 8px; }
+.problem-card p { font-size: 14px; line-height: 1.55; color: #666; font-weight: 300; }
+
+/* ─── REALISATION ────────────────────────────────────── */
+#realisation {
+  background: var(--black);
+  color: var(--white);
+  padding: clamp(80px, 10vw, 128px) clamp(20px, 5vw, 64px);
+}
+#realisation .inner { max-width: 1120px; margin: 0 auto; }
+.real-h2 {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-size: clamp(26px, 3.5vw, 44px);
+  line-height: 1.05;
+  max-width: 640px;
+  margin-bottom: 56px;
+  text-wrap: pretty;
+}
+.real-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1px;
+  background: rgba(255,255,255,0.08);
+}
+.real-col {
+  background: var(--black);
+  padding: 36px 28px;
+}
+.real-col.highlight { background: #0f0f0f; }
+.real-phase {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+.real-phase.lime { color: var(--lime); }
+.real-col blockquote {
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.5);
+  font-style: italic;
+  font-weight: 300;
+  margin-bottom: 18px;
+}
+.real-col blockquote strong { color: rgba(255,255,255,0.85); font-style: normal; font-weight: 500; }
+.real-col .note { font-size: 13px; color: rgba(255,255,255,0.3); line-height: 1.5; }
+.real-col.highlight .note { color: rgba(255,255,255,0.45); }
+.upgrade-strip {
+  margin-top: 48px;
+  background: rgba(215,251,3,0.06);
+  border: 1px solid rgba(215,251,3,0.2);
+  padding: 24px 28px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.upgrade-strip p {
+  font-size: 15px;
+  color: rgba(255,255,255,0.5);
+  flex: 1;
+  min-width: 200px;
+  font-weight: 300;
+}
+.upgrade-strip p strong { color: rgba(255,255,255,0.85); font-weight: 500; }
+
+/* ─── CAPABILITIES ───────────────────────────────────── */
+#capabilities {
+  background: var(--white);
+  padding: clamp(80px, 10vw, 128px) clamp(20px, 5vw, 64px);
+}
+#capabilities .inner { max-width: 1120px; margin: 0 auto; }
+.caps-rows { margin-top: 48px; }
+.cap-row {
+  display: grid;
+  grid-template-columns: 48px 1fr 1fr;
+  gap: 32px;
+  padding: 28px 0;
+  border-top: 1px solid var(--mid);
+  align-items: start;
+}
+.cap-row:last-child { border-bottom: 1px solid var(--mid); }
+.cap-n {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-size: 12px;
+  color: var(--mid);
+  padding-top: 2px;
+}
+.cap-title { font-size: 16px; font-weight: 500; letter-spacing: -0.01em; }
+.cap-body { font-size: 14px; line-height: 1.6; color: #666; font-weight: 300; }
+
+/* ─── PRODUCT PREVIEW ────────────────────────────────── */
+#product-preview {
+  background: var(--off);
+  padding: clamp(80px, 10vw, 128px) clamp(20px, 5vw, 64px);
+}
+#product-preview .inner { max-width: 1120px; margin: 0 auto; }
+.compare-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  margin-top: 48px;
+  background: var(--mid);
+  border: 1px solid var(--mid);
+}
+.compare-before {
+  background: var(--white);
+  padding: 32px;
+}
+.compare-after {
+  background: var(--black);
+  color: var(--white);
+  padding: 32px;
+}
+.col-label {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 24px;
+  font-weight: 500;
+}
+.compare-after .col-label { color: rgba(255,255,255,0.25); }
+.ci {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--mid);
+  font-size: 14px;
+  color: #555;
+}
+.compare-after .ci { border-color: rgba(255,255,255,0.07); color: rgba(255,255,255,0.55); }
+.ci-arrow { flex-shrink: 0; color: #ccc; margin-top: 2px; font-size: 12px; }
+.compare-after .ci-arrow { color: var(--lime); }
+.sample-out {
+  margin-top: 24px;
+  border-left: 2px solid var(--red);
+  padding: 14px 16px;
+  background: rgba(246,51,28,0.05);
+}
+.sample-out .tag {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+.sample-out p { font-size: 13px; line-height: 1.6; color: rgba(255,255,255,0.55); }
+.sample-out p strong { color: rgba(255,255,255,0.85); font-weight: 500; }
+
+/* ─── HOW IT WORKS ───────────────────────────────────── */
+#how {
+  background: var(--white);
+  padding: clamp(80px, 10vw, 128px) clamp(20px, 5vw, 64px);
+}
+#how .inner { max-width: 1120px; margin: 0 auto; }
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--mid);
+  border: 1px solid var(--mid);
+  margin-top: 48px;
+}
+.step {
+  background: var(--white);
+  padding: 36px 28px;
+}
+.step-n {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-size: 44px;
+  color: var(--mid);
+  line-height: 1;
+  margin-bottom: 20px;
+  letter-spacing: -0.02em;
+}
+.step h3 { font-size: 16px; font-weight: 500; margin-bottom: 10px; }
+.step p { font-size: 14px; line-height: 1.6; color: #666; font-weight: 300; }
+.step-tag {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: var(--lime);
+  color: var(--black);
+  padding: 3px 10px;
+  margin-top: 14px;
+  font-weight: 500;
+}
+.step-tag.grey {
+  background: var(--off);
+  color: var(--muted);
+}
+
+/* ─── PRICING ────────────────────────────────────────── */
+#pricing {
+  background: var(--black);
+  color: var(--white);
+  padding: clamp(80px, 10vw, 128px) clamp(20px, 5vw, 64px);
+}
+#pricing .inner { max-width: 1120px; margin: 0 auto; }
+.pricing-h2 {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-size: clamp(26px, 3.5vw, 44px);
+  line-height: 1.05;
+  margin-bottom: 12px;
+}
+.pricing-sub {
+  font-size: 16px;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 48px;
+  font-weight: 300;
+}
+.price-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+.price-card {
+  background: #111;
+  border: 1px solid rgba(255,255,255,0.07);
+  padding: 40px 36px;
+}
+.price-card.featured {
+  background: #141414;
+  border-color: rgba(215,251,3,0.3);
+  position: relative;
+}
+.price-badge {
+  position: absolute;
+  top: -1px; right: 28px;
+  background: var(--lime);
+  color: var(--black);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  font-weight: 700;
+}
+.price-tier {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+.price-amount {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-size: 56px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+.price-amount sup { font-size: 22px; vertical-align: super; }
+.price-desc {
+  font-size: 14px;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 32px;
+  font-weight: 300;
+}
+.pf-list { list-style: none; margin-bottom: 32px; }
+.pf-list li {
+  font-size: 14px;
+  color: rgba(255,255,255,0.5);
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  display: flex;
+  gap: 10px;
+  font-weight: 300;
+}
+.pf-list li::before { content: '—'; color: rgba(255,255,255,0.18); flex-shrink: 0; }
+.price-card.featured .pf-list li::before { color: rgba(215,251,3,0.4); }
+.pf-list li strong { color: rgba(255,255,255,0.8); font-weight: 500; }
+.btn-ghost-white {
+  display: block;
+  text-align: center;
+  padding: 14px;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.45);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-ghost-white:hover { border-color: rgba(255,255,255,0.4); color: var(--white); }
+.btn-lime-full {
+  display: block;
+  text-align: center;
+  padding: 14px;
+  background: var(--lime);
+  color: var(--black);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.btn-lime-full:hover { opacity: 0.88; }
+.pricing-note {
+  margin-top: 28px;
+  padding: 18px 22px;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.02);
+  font-size: 14px;
+  color: rgba(255,255,255,0.35);
+  font-weight: 300;
+  line-height: 1.55;
+}
+.pricing-note strong { color: rgba(255,255,255,0.65); font-weight: 500; }
+
+/* ─── PROOF ──────────────────────────────────────────── */
+#proof {
+  background: var(--white);
+  padding: clamp(64px, 8vw, 96px) clamp(20px, 5vw, 64px);
+  border-top: 1px solid var(--mid);
+  border-bottom: 1px solid var(--mid);
+}
+#proof .inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+.proof-stat { flex-shrink: 0; }
+.proof-n {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-size: 56px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.proof-l { font-size: 13px; color: var(--muted); margin-top: 4px; font-weight: 300; }
+.proof-div { width: 1px; height: 60px; background: var(--mid); flex-shrink: 0; }
+.proof-copy {
+  font-size: clamp(16px, 2vw, 20px);
+  line-height: 1.55;
+  color: #444;
+  font-weight: 300;
+  max-width: 560px;
+  text-wrap: pretty;
+}
+.proof-copy strong { color: var(--black); font-weight: 500; }
+
+/* ─── FINAL CTA ──────────────────────────────────────── */
+#final-cta {
+  background: var(--lime);
+  color: var(--black);
+  padding: clamp(96px, 12vw, 140px) clamp(20px, 5vw, 64px);
+  text-align: center;
+}
+#final-cta .inner { max-width: 640px; margin: 0 auto; }
+.final-h2 {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-size: clamp(30px, 4.5vw, 54px);
+  line-height: 1.03;
+  margin-bottom: 20px;
+  letter-spacing: 0.01em;
+  text-wrap: pretty;
+}
+#final-cta p {
+  font-size: 17px;
+  color: rgba(0,0,0,0.55);
+  margin-bottom: 40px;
+  font-weight: 300;
+  line-height: 1.55;
+}
+.btn-black {
+  display: inline-block;
+  background: var(--black);
+  color: var(--lime);
+  padding: 17px 36px;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.btn-black:hover { opacity: 0.85; }
+.final-foot { margin-top: 20px; font-size: 13px; color: rgba(0,0,0,0.4); }
+
+/* ─── FOOTER ─────────────────────────────────────────── */
+footer {
+  background: var(--black);
+  padding: 28px clamp(20px, 5vw, 64px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.footer-logo {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.25);
+}
+.footer-note { font-size: 12px; color: rgba(255,255,255,0.18); }
+
+/* ─── MOBILE ─────────────────────────────────────────── */
+@media (max-width: 780px) {
+  #hero .inner { grid-template-columns: 1fr; gap: 48px; }
+  .real-grid { grid-template-columns: 1fr; }
+  .compare-wrap { grid-template-columns: 1fr; }
+  .steps-grid { grid-template-columns: 1fr; }
+  .price-grid { grid-template-columns: 1fr; }
+  .cap-row { grid-template-columns: 32px 1fr; gap: 16px; }
+  .cap-body { grid-column: 2; }
+  #proof .inner { flex-direction: column; align-items: flex-start; gap: 20px; }
+  .proof-div { width: 48px; height: 1px; }
+}
+</style>
+</head>
+<body>
+
+<!-- STICKY BAR -->
+<div class="sticky-bar" id="stickyBar">
+  <a href="#" class="sticky-logo">Compass AI</a>
+  <a href="#pricing" class="sticky-cta">Start free assessment</a>
+</div>
+
+<!-- ══════════════ HERO ══════════════ -->
+<section id="hero">
+  <div class="inner">
+    <div>
+      <span class="eyebrow">Investor Readiness Tool</span>
+      <h1>Know where your business breaks before you pitch.</h1>
+      <p class="hero-sub">Structured questions. Direct feedback. The gaps investors will find — identified before you're in the room.</p>
+      <div class="cta-row">
+        <a href="#pricing" class="btn-lime lg">Start free assessment</a>
+        <a href="#how" class="btn-outline-dark">See how it works</a>
+      </div>
+      <p class="hero-footnote"><strong>First 3 questions free.</strong> Full analysis €24</p>
+    </div>
+    <div class="product-card">
+      <div class="card-bar">
+        <div class="card-dot"></div>
+        <span class="card-title-label">Compass AI — Q3 Feedback</span>
+      </div>
+      <p class="card-q"><strong>Revenue model:</strong> How does your business generate revenue, and what is your pricing rationale?</p>
+      <div class="feedback-item">
+        <div class="fb-tag">Critical gap</div>
+        <p class="fb-body">Pricing is set relative to costs, not value. <strong>Investors will ask why a customer pays €50 instead of €10 or €200.</strong> You don't have an answer yet.</p>
+      </div>
+      <div class="feedback-item warn">
+        <div class="fb-tag warn">Assumption risk</div>
+        <p class="fb-body">No stated path to gross margins above 60%. <strong>At current assumptions, this model does not support institutional investment.</strong></p>
+      </div>
+      <div class="card-locked">
+        <div class="lock-sq"></div>
+        <p><strong>Questions 4–10</strong> unlock with full analysis — €24</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ PROBLEM ══════════════ -->
+<section id="problem">
+  <div class="inner">
+    <span class="eyebrow">The problem</span>
+    <h2 class="section-h2" style="max-width:660px; margin-bottom:16px;">Most founders think they're ready. Most are not.</h2>
+    <p class="section-lead">Investor readiness is not a feeling. It's a specific set of answers to specific questions — and the gaps are rarely visible from the inside.</p>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="p-num">01</div>
+        <h3>You optimise for the pitch</h3>
+        <p>Founders rehearse how they communicate their business — not whether the business holds up to scrutiny.</p>
+      </div>
+      <div class="problem-card">
+        <div class="p-num">02</div>
+        <h3>Feedback comes too late</h3>
+        <p>Critical structural feedback typically arrives in the room with an investor — after months of preparation.</p>
+      </div>
+      <div class="problem-card">
+        <div class="p-num">03</div>
+        <h3>Advisors soften the truth</h3>
+        <p>Warm networks give warm feedback. Investors don't. The gap between what you hear and what they think is significant.</p>
+      </div>
+      <div class="problem-card">
+        <div class="p-num">04</div>
+        <h3>Gaps compound under pressure</h3>
+        <p>One weak assumption creates four follow-up questions you haven't prepared for. One becomes many, fast.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ REALISATION ══════════════ -->
+<section id="realisation">
+  <div class="inner">
+    <span class="eyebrow on-dark">The realisation moment</span>
+    <h2 class="real-h2">Three questions change what founders know about their business.</h2>
+    <div class="real-grid">
+      <div class="real-col">
+        <div class="real-phase">Before — What founders believe</div>
+        <blockquote>"I know my business. I've been building this for 18 months. I can answer any question an investor throws at me."</blockquote>
+        <p class="note">Confidence built from proximity, not stress-testing. No external frame of reference.</p>
+      </div>
+      <div class="real-col highlight">
+        <div class="real-phase lime">After 3 questions</div>
+        <blockquote>"I hadn't thought about <strong>why an investor would exit this</strong>. I assumed the business was fundable. I didn't know how to prove it."</blockquote>
+        <p class="note">The first three questions expose what founders haven't stress-tested: model assumptions, market logic, competitive moat.</p>
+      </div>
+      <div class="real-col">
+        <div class="real-phase">Why founders upgrade</div>
+        <blockquote>"If three questions found <strong>that</strong>, I need to know what the other seven find before I get in front of an investor."</blockquote>
+        <p class="note">The free assessment creates clarity. The full analysis creates investor readiness.</p>
+      </div>
+    </div>
+    <div class="upgrade-strip">
+      <p>The first 3 questions show the gap. <strong>The next 7 show the full scope of that gap</strong> — and what to address before you pitch.</p>
+      <a href="#pricing" class="btn-lime">Start free assessment</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ CAPABILITIES ══════════════ -->
+<section id="capabilities">
+  <div class="inner">
+    <span class="eyebrow">What Compass AI does</span>
+    <h2 class="section-h2" style="max-width:560px;">Direct, investor-grade analysis across your entire business.</h2>
+    <div class="caps-rows">
+      <div class="cap-row">
+        <div class="cap-n">01</div>
+        <div class="cap-title">Identifies structural weaknesses</div>
+        <div class="cap-body">Surfaces specific gaps in your model, market assumptions, and traction story that will stop an investor from proceeding — before you're in the room.</div>
+      </div>
+      <div class="cap-row">
+        <div class="cap-n">02</div>
+        <div class="cap-title">Maps risk to investor logic</div>
+        <div class="cap-body">Translates your answers into the risk language institutional investors use. Shows where your business reads as high-risk — and why.</div>
+      </div>
+      <div class="cap-row">
+        <div class="cap-n">03</div>
+        <div class="cap-title">Prioritises what to fix</div>
+        <div class="cap-body">Not everything matters equally. Compass AI ranks your gaps by investor impact so you focus on what changes outcomes, not what just sounds better.</div>
+      </div>
+      <div class="cap-row">
+        <div class="cap-n">04</div>
+        <div class="cap-title">Grounded in real submission patterns</div>
+        <div class="cap-body">Built on feedback patterns from 400+ founder submissions. The analysis reflects how investors actually respond — not how founders hope they will.</div>
+      </div>
+      <div class="cap-row">
+        <div class="cap-n">05</div>
+        <div class="cap-title">No softening, no hedging</div>
+        <div class="cap-body">If your go-to-market is unclear or your defensibility is unproven, the assessment says so. Direct. You need to hear this before investors do.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ PRODUCT PREVIEW ══════════════ -->
+<section id="product-preview">
+  <div class="inner">
+    <span class="eyebrow">Before &amp; After</span>
+    <h2 class="section-h2" style="max-width:600px;">What goes in. What comes back.</h2>
+    <p class="section-lead" style="margin-top:12px; margin-bottom:48px;">Founders answer in their own words. Compass AI returns structured investor-grade analysis — gaps, risks, and what to fix.</p>
+
+    <div class="compare-wrap">
+      <div class="compare-before">
+        <div class="col-label">Founder input — Q4: Market size</div>
+        <div style="background:#f8f8f6; padding:18px 20px; font-size:14px; line-height:1.65; color:#444; font-weight:300; margin-bottom:20px; border-left:3px solid #ddd;">
+          "The total addressable market for our category is around €4 billion in Europe. We're targeting the SMB segment, which we estimate at around 20% of that. We plan to capture 1–2% within 5 years."
+        </div>
+        <div class="col-label" style="margin-top:24px;">Founder input — Q7: Competitive advantage</div>
+        <div style="background:#f8f8f6; padding:18px 20px; font-size:14px; line-height:1.65; color:#444; font-weight:300; border-left:3px solid #ddd;">
+          "Our main advantage is our founding team — we have deep domain expertise and strong relationships in the industry. We also move faster than incumbents."
+        </div>
+      </div>
+      <div class="compare-after">
+        <div class="col-label">Compass AI feedback</div>
+        <div class="feedback-item" style="margin-bottom:10px;">
+          <div class="fb-tag">Gap — Q4</div>
+          <p class="fb-body">The €800M SMB estimate is top-down. <strong>Investors will ask for a bottom-up build:</strong> how many addressable businesses, at what ACV, with what conversion rate. That number does not yet exist in your answer.</p>
+        </div>
+        <div class="feedback-item warn" style="margin-bottom:10px;">
+          <div class="fb-tag warn">Risk — Q4</div>
+          <p class="fb-body">1–2% market share in 5 years with no stated acquisition mechanism is a projection, not a plan. <strong>What is the go-to-market path that makes 1% achievable?</strong></p>
+        </div>
+        <div class="feedback-item" style="margin-bottom:0;">
+          <div class="fb-tag">Gap — Q7</div>
+          <p class="fb-body">Domain expertise and speed are not structural moats. <strong>What stops a well-funded competitor from replicating this in 12 months?</strong> That question is unanswered.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ HOW IT WORKS ══════════════ -->
+<section id="how">
+  <div class="inner">
+    <span class="eyebrow">Process</span>
+    <h2 class="section-h2" style="max-width:500px;">Three steps. One clear picture of where you stand.</h2>
+    <div class="steps-grid">
+      <div class="step">
+        <div class="step-n">01</div>
+        <h3>Answer structured questions</h3>
+        <p>Ten focused questions across your model, market, traction, and team. Designed to surface what you haven't clearly articulated — or haven't thought through.</p>
+        <span class="step-tag grey">First 3 free</span>
+      </div>
+      <div class="step">
+        <div class="step-n">02</div>
+        <h3>Receive investor-grade feedback</h3>
+        <p>Each answer is analysed for gaps, risk signals, and logic failures. Feedback is direct and specific — not generic summaries.</p>
+        <span class="step-tag grey">Instant</span>
+      </div>
+      <div class="step">
+        <div class="step-n">03</div>
+        <h3>Upgrade for the full picture</h3>
+        <p>Questions 4–10 deliver the same direct feedback — gaps, risks, and what to fix — across the full scope of your business.</p>
+        <span class="step-tag">€24 one-time</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ PRICING ══════════════ -->
+<section id="pricing">
+  <div class="inner">
+    <span class="eyebrow on-dark">Pricing</span>
+    <h2 class="pricing-h2">Try the first 3 questions free. Get the full picture for €24.</h2>
+    <p class="pricing-sub">No subscription. No recurring charge. One complete analysis.</p>
+    <div class="price-grid">
+      <div class="price-card">
+        <div class="price-tier">Free</div>
+        <div class="price-amount">€0</div>
+        <p class="price-desc">First three questions, no commitment required.</p>
+        <ul class="pf-list">
+          <li>Questions 1–3 with full written feedback</li>
+          <li>Gap identification per answer</li>
+          <li>Risk flags per answer</li>
+          <li><strong>Enough to know whether you need the rest</strong></li>
+        </ul>
+        <a href="#" class="btn-ghost-white">Start free</a>
+      </div>
+      <div class="price-card featured">
+        <div class="price-badge">Recommended</div>
+        <div class="price-tier">Full Analysis</div>
+        <div class="price-amount"><sup>€</sup>24</div>
+        <p class="price-desc">All 10 questions. One payment. No recurring charge.</p>
+        <ul class="pf-list">
+          <li>Questions 4–10 with full written feedback</li>
+          <li>Gaps identified per answer</li>
+          <li>Risks flagged per answer</li>
+          <li>What to fix — per answer</li>
+          <li><strong>Complete picture across all 10 questions</strong></li>
+        </ul>
+        <a href="#" class="btn-lime-full">Start free assessment</a>
+      </div>
+    </div>
+    <div class="pricing-note">
+      The free assessment is not a teaser. <strong>It surfaces real gaps in your business.</strong> The full analysis shows you the complete scope of those gaps and what to do about them — before an investor does it in a meeting you can't recover from.
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ PROOF ══════════════ -->
+<section id="proof">
+  <div class="inner">
+    <div class="proof-stat">
+      <div class="proof-n">400+</div>
+      <div class="proof-l">Founder submissions</div>
+    </div>
+    <div class="proof-div"></div>
+    <p class="proof-copy">Compass AI is built on <strong>feedback patterns from 400+ real founder submissions</strong> — not hypothetical scenarios. The gaps it finds are the gaps investors actually find.</p>
+  </div>
+</section>
+
+<!-- ══════════════ FINAL CTA ══════════════ -->
+<section id="final-cta">
+  <div class="inner">
+    <h2 class="final-h2">Find out before an investor does.</h2>
+    <p>The first three questions are free. They take under 10 minutes. They will tell you something about your business you didn't already know.</p>
+    <a href="#pricing" class="btn-black">Start free assessment</a>
+    <p class="final-foot">First 3 questions free &nbsp;·&nbsp; Full analysis €24 &nbsp;·&nbsp; No subscription</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Compass AI</div>
+  <div class="footer-note">A Founderland product &nbsp;·&nbsp; founderland.org</div>
+</footer>
+
+<script>
+// Sticky nav
+const stickyBar = document.getElementById('stickyBar');
+const heroEl = document.getElementById('hero');
+new IntersectionObserver(([e]) => {
+  stickyBar.classList.toggle('visible', !e.isIntersecting);
+}, { threshold: 0.1 }).observe(heroEl);
+
+// Tweaks
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "accentColor": "#0063e2",
+  "darkBg": "#000000",
+  "heroHeadline": "Know where your business breaks before you pitch."
+}/*EDITMODE-END*/;
+
+let tweaks = { ...TWEAK_DEFAULTS };
+
+function applyTweaks(t) {
+  document.documentElement.style.setProperty('--lime', t.accentColor);
+  document.documentElement.style.setProperty('--black', t.darkBg);
+  const h1 = document.querySelector('h1');
+  if (h1) h1.textContent = t.heroHeadline;
+}
+applyTweaks(tweaks);
+
+// Panel
+const panel = document.createElement('div');
+panel.id = 'tweaks-panel';
+panel.style.cssText = `position:fixed;bottom:24px;right:24px;z-index:999;background:#111;border:1px solid rgba(255,255,255,0.1);padding:24px;width:272px;display:none;font-family:'DM Sans',sans-serif;box-shadow:0 8px 32px rgba(0,0,0,0.5);`;
+panel.innerHTML = `
+  <div style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:20px;font-weight:500;">Tweaks</div>
+  <div style="display:flex;flex-direction:column;gap:16px;">
+    <label style="display:flex;flex-direction:column;gap:6px;">
+      <span style="font-size:12px;color:rgba(255,255,255,0.4);">Accent color</span>
+      <select id="tw-accent" style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.75);padding:7px;font-size:13px;">
+        <option value="#d7fb03">Lime (brand)</option>
+        <option value="#f6331c">Red (brand)</option>
+        <option value="#0063e2">Blue (brand)</option>
+        <option value="#ee93b5">Pink (brand)</option>
+      </select>
+    </label>
+    <label style="display:flex;flex-direction:column;gap:6px;">
+      <span style="font-size:12px;color:rgba(255,255,255,0.4);">Headline</span>
+      <textarea id="tw-hl" style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.75);padding:7px;font-size:13px;resize:vertical;min-height:64px;">${TWEAK_DEFAULTS.heroHeadline}</textarea>
+    </label>
+  </div>`;
+document.body.appendChild(panel);
+
+panel.querySelector('#tw-accent').addEventListener('change', e => {
+  tweaks.accentColor = e.target.value;
+  applyTweaks(tweaks);
+  window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { accentColor: tweaks.accentColor } }, '*');
+});
+panel.querySelector('#tw-hl').addEventListener('input', e => {
+  tweaks.heroHeadline = e.target.value;
+  applyTweaks(tweaks);
+  window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { heroHeadline: tweaks.heroHeadline } }, '*');
+});
+
+window.addEventListener('message', e => {
+  if (e.data?.type === '__activate_edit_mode') panel.style.display = 'block';
+  if (e.data?.type === '__deactivate_edit_mode') panel.style.display = 'none';
+});
+window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+</script>
+</body>
+</html>
