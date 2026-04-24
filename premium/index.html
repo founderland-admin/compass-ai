@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compass AI — Full Assessment</title>
+<meta name="description" content="Access the full Compass AI assessment. Answer ten strategic questions across validation, execution and growth, and receive structured AI feedback on your business.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+@font-face {
+  font-family: 'Hanson';
+  src: url('/Hanson-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-display: swap;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black: #000000;
+  --white: #ffffff;
+  --off: #f8f8f6;
+  --mid: #e0dedd;
+  --muted: #888580;
+  --lime: #d7fb03;
+  --red: #f6331c;
+  --pink: #ee93b5;
+  --blue: #0063e2;
+  --font-display: 'Hanson', 'Helvetica Neue', Arial, sans-serif;
+  --font-body: 'DM Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--white);
+  color: var(--black);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  padding-top: 64px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── FIXED NAV ─────────────────────────────────────── */
+.sticky-bar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(20px, 5vw, 48px);
+  height: 64px;
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--mid);
+  transition: box-shadow 0.2s ease;
+}
+.sticky-bar.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.04); }
+.sticky-logo {
+  font-family: var(--font-display);
+  font-size: 16px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--black);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sticky-logo::before {
+  content: "";
+  width: 22px; height: 22px;
+  background: url('/favicon.svg') center/cover no-repeat;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+.nav-right { display: flex; align-items: center; gap: 20px; }
+.back-link {
+  font-size: 13px;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.back-link:hover { color: var(--black); }
+
+/* ─── HERO ─────────────────────────────────────── */
+.hero {
+  background: var(--white);
+  padding: 72px clamp(20px, 5vw, 48px) 48px;
+  text-align: center;
+  border-bottom: 1px solid var(--mid);
+}
+.hero .inner { max-width: 860px; margin: 0 auto; }
+.eyebrow {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 6px 12px;
+  border: 1px solid var(--mid);
+  border-radius: 999px;
+  margin-bottom: 24px;
+}
+.eyebrow .dot {
+  display: inline-block;
+  width: 6px; height: 6px;
+  background: var(--lime);
+  border-radius: 50%;
+  margin-right: 8px;
+  vertical-align: middle;
+  transform: translateY(-1px);
+}
+.hero h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  font-size: clamp(36px, 6vw, 64px);
+  line-height: 1.02;
+  margin-bottom: 24px;
+  color: var(--black);
+}
+.hero h1 .accent { color: var(--red); }
+.hero p {
+  color: var(--muted);
+  font-size: clamp(15px, 1.5vw, 18px);
+  max-width: 640px;
+  margin: 0 auto 8px;
+  line-height: 1.55;
+}
+.hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+}
+.hero .meta-row .chip {
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+.hero .meta-row .chip strong {
+  color: var(--black);
+  font-weight: 500;
+}
+
+/* ─── QUESTIONS PREVIEW ─────────────────────────────────── */
+.preview-section {
+  padding: 64px clamp(20px, 5vw, 48px) 32px;
+  max-width: 1120px;
+  width: 100%;
+  margin: 0 auto;
+}
+.section-head {
+  max-width: 640px;
+  margin: 0 auto 40px;
+  text-align: center;
+}
+.section-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+.section-head h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: clamp(24px, 3.5vw, 34px);
+  line-height: 1.1;
+  margin-bottom: 14px;
+}
+.section-head p {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+.cat-card {
+  position: relative;
+  border: 1px solid var(--mid);
+  border-radius: 14px;
+  padding: 28px 24px 24px;
+  background: var(--white);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.cat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.05);
+}
+.cat-num {
+  font-family: var(--font-display);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+.cat-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 22px;
+  letter-spacing: 0.01em;
+  margin-bottom: 10px;
+  line-height: 1.1;
+}
+.cat-desc {
+  color: #2a2a2a;
+  font-size: 14.5px;
+  line-height: 1.55;
+  margin-bottom: 16px;
+}
+.cat-card .cat-tag {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--off);
+  color: var(--muted);
+  border: 1px solid var(--mid);
+}
+.cat-card.c-lime { border-top: 4px solid var(--lime); }
+.cat-card.c-red { border-top: 4px solid var(--red); }
+.cat-card.c-pink { border-top: 4px solid var(--pink); }
+.cat-card.c-blue { border-top: 4px solid var(--blue); }
+.cat-card.c-black { border-top: 4px solid var(--black); }
+
+/* ─── ASSESSMENT EMBED ─────────────────────────────────── */
+.form-wrap {
+  flex: 1;
+  padding: 40px clamp(12px, 3vw, 32px) 56px;
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+}
+.form-heading {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 28px;
+}
+.form-heading h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: clamp(22px, 3vw, 30px);
+  line-height: 1.1;
+  margin-bottom: 10px;
+}
+.form-heading p {
+  color: var(--muted);
+  font-size: 15px;
+}
+.form-heading .accent { color: var(--red); }
+.tf-container {
+  background: var(--white);
+  border: 1px solid var(--mid);
+  border-radius: 14px;
+  min-height: 620px;
+  overflow: hidden;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.03);
+}
+.tf-container [data-tf-live] { min-height: 620px; }
+
+.free-link-row {
+  text-align: center;
+  padding: 0 20px 40px;
+  color: var(--muted);
+  font-size: 14px;
+}
+.free-link-row a {
+  color: var(--black);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ─── FOOTER ─────────────────────────────────────── */
+.page-foot {
+  background: var(--black);
+  color: rgba(255,255,255,0.55);
+  padding: 28px clamp(20px, 5vw, 48px);
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.page-foot a {
+  color: rgba(255,255,255,0.75);
+  text-decoration: none;
+  margin-right: 16px;
+  transition: color 0.2s;
+}
+.page-foot a:hover { color: var(--white); }
+
+@media (max-width: 600px) {
+  .hero { padding: 48px 20px 32px; }
+  .hero .meta-row { gap: 18px; }
+  .preview-section { padding: 48px 20px 24px; }
+  .page-foot { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<nav class="sticky-bar" id="stickyBar">
+  <a href="/" class="sticky-logo">Compass AI</a>
+  <div class="nav-right">
+    <a href="/" class="back-link">← Back to overview</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="inner">
+    <div class="eyebrow"><span class="dot"></span>Full assessment · 10 questions</div>
+    <h1>The full<br><span class="accent">picture</span></h1>
+    <p>Compass asks the critical questions to help you go beyond idea clarity and evaluate how your business performs, grows, and scales.</p>
+    <p>All ten questions, written feedback on every answer, gaps and risks flagged per response — in one sitting.</p>
+    <div class="meta-row">
+      <div class="chip"><strong>10</strong> strategic questions</div>
+      <div class="chip"><strong>7</strong> areas evaluated</div>
+      <div class="chip"><strong>€24</strong> one-time</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 7 categories preview ────────────────────────────────── -->
+<section class="preview-section" id="what-youll-answer">
+  <div class="section-head">
+    <div class="section-eyebrow">What you'll answer</div>
+    <h2>Seven areas. Ten questions.</h2>
+    <p>These are the areas the full Compass AI assessment covers. Come prepared with honest answers — the feedback is only as sharp as the input you give it.</p>
+  </div>
+
+  <div class="cat-grid">
+    <div class="cat-card c-lime">
+      <div class="cat-num">01</div>
+      <div class="cat-name">Validate</div>
+      <p class="cat-desc">Evidence that the problem is real and that people want what you're building. What signals have you seen from the market, and how did you collect them?</p>
+      <span class="cat-tag">Problem · Demand · Signal</span>
+    </div>
+
+    <div class="cat-card c-red">
+      <div class="cat-num">02</div>
+      <div class="cat-name">Progress</div>
+      <p class="cat-desc">What you've shipped, tested and learned so far. Traction metrics, milestones and the momentum you can point to today.</p>
+      <span class="cat-tag">Traction · Milestones</span>
+    </div>
+
+    <div class="cat-card c-pink">
+      <div class="cat-num">03</div>
+      <div class="cat-name">Business model</div>
+      <p class="cat-desc">How you make money. Pricing, unit economics, customer payback — and whether the numbers work as you scale.</p>
+      <span class="cat-tag">Revenue · Unit economics</span>
+    </div>
+
+    <div class="cat-card c-blue">
+      <div class="cat-num">04</div>
+      <div class="cat-name">Differentiate</div>
+      <p class="cat-desc">Why you and not someone else. What you see that competitors don't, and the defensible edge that keeps that gap open.</p>
+      <span class="cat-tag">Edge · Moat · Positioning</span>
+    </div>
+
+    <div class="cat-card c-lime">
+      <div class="cat-num">05</div>
+      <div class="cat-name">GTM</div>
+      <p class="cat-desc">How you reach the customers you described. Your channels, your acquisition motion, and what happens after the first customer says yes.</p>
+      <span class="cat-tag">Channels · Acquisition</span>
+    </div>
+
+    <div class="cat-card c-red">
+      <div class="cat-num">06</div>
+      <div class="cat-name">Risk</div>
+      <p class="cat-desc">The things most likely to break you. Assumptions you haven't tested, dependencies you can't control, and what you'd do if they broke tomorrow.</p>
+      <span class="cat-tag">Assumptions · Dependencies</span>
+    </div>
+
+    <div class="cat-card c-black">
+      <div class="cat-num">07</div>
+      <div class="cat-name">Vision</div>
+      <p class="cat-desc">Where this goes if everything works. The scale of the opportunity, the shape of the company you want to build, and the bar you're holding yourself to.</p>
+      <span class="cat-tag">Scale · Ambition</span>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Typeform embed ───────────────────────────────────────── -->
+<main class="form-wrap" id="start">
+  <div class="form-heading">
+    <h2>Ready? <span class="accent">Begin.</span></h2>
+    <p>One payment. No subscription. Feedback delivered immediately after the last answer.</p>
+  </div>
+  <div class="tf-container">
+    <div data-tf-live="01KPZ6VBVNXTWTK1ANQF4HMTSH"></div>
+  </div>
+</main>
+
+<div class="free-link-row">
+  Haven't tried the free version yet? <a href="/try/">Start with 3 free questions →</a>
+</div>
+
+<footer class="page-foot">
+  <div>© 2026 Founderland gUG (haftungsbeschränkt)</div>
+  <div>
+    <a href="/">Compass AI</a>
+    <a href="/try/">Free assessment</a>
+    <a href="/terms/">Terms</a>
+    <a href="https://www.founderland.org/privacy" target="_blank" rel="noopener">Privacy</a>
+    <a href="/cookies/">Cookies</a>
+  </div>
+</footer>
+
+<script>
+const stickyBar = document.getElementById('stickyBar');
+const toggleShadow = () => stickyBar.classList.toggle('scrolled', window.scrollY > 12);
+toggleShadow();
+window.addEventListener('scroll', toggleShadow, { passive: true });
+</script>
+<script src="//embed.typeform.com/next/embed.js"></script>
+</body>
+</html>
