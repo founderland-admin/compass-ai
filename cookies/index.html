@@ -5,9 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cookie Notice — Compass AI</title>
 <meta name="description" content="Information about cookies used on compass.founderland.org.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
+@font-face {
+  font-family: 'Hanson';
+  src: url('/Hanson-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-display: swap;
+}
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
@@ -16,6 +24,7 @@
   --off: #f8f8f6;
   --mid: #e0dedd;
   --muted: #888580;
+  --lime: #d7fb03;
   --font-display: 'Hanson', 'Helvetica Neue', Arial, sans-serif;
   --font-body: 'DM Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
@@ -27,27 +36,43 @@ body {
   font-size: 16px;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
+  padding-top: 64px;
 }
 
-.page-head {
-  padding: 20px clamp(20px, 5vw, 48px);
-  border-bottom: 1px solid var(--mid);
+.sticky-bar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
+  justify-content: space-between;
+  padding: 0 clamp(20px, 5vw, 48px);
+  height: 64px;
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--mid);
+  transition: box-shadow 0.2s ease;
 }
-.logo {
+.sticky-bar.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.04); }
+.sticky-logo {
   font-family: var(--font-display);
+  font-size: 16px;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 14px;
   color: var(--black);
   text-decoration: none;
-  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
-.back-link { font-size: 13px; color: var(--muted); text-decoration: none; }
+.sticky-logo::before {
+  content: "";
+  width: 22px; height: 22px;
+  background: url('/favicon.svg') center/cover no-repeat;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+.back-link { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
 .back-link:hover { color: var(--black); }
 
 .doc {
@@ -91,10 +116,10 @@ body {
 </head>
 <body>
 
-<header class="page-head">
-  <a href="/" class="logo">Compass AI</a>
+<nav class="sticky-bar" id="stickyBar">
+  <a href="/" class="sticky-logo">Compass AI</a>
   <a href="/" class="back-link">← Back to overview</a>
-</header>
+</nav>
 
 <article class="doc">
   <div class="eyebrow">Legal</div>
@@ -135,5 +160,11 @@ body {
   </div>
 </footer>
 
+<script>
+const stickyBar = document.getElementById('stickyBar');
+const toggleShadow = () => stickyBar.classList.toggle('scrolled', window.scrollY > 12);
+toggleShadow();
+window.addEventListener('scroll', toggleShadow, { passive: true });
+</script>
 </body>
 </html>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" fill="#000"/>
+  <!-- F in top-left -->
+  <path d="M10 12 H30 V20 H18 V27 H28 V34 H18 V44 H10 Z" fill="#fff"/>
+  <!-- Diagonal arrow ↗ in top-right (shaft + head) -->
+  <g fill="#fff">
+    <!-- arrowhead (upper-right corner) -->
+    <polygon points="54,12 54,32 46,32 46,26 36,36 30,30 40,20 34,20 34,12"/>
+  </g>
+  <!-- D in bottom-left -->
+  <path d="M10 32 H22 C30 32 34 37 34 42 C34 47 30 52 22 52 H10 Z M18 40 H22 C24 40 26 40.5 26 42 C26 43.5 24 44 22 44 H18 Z" fill="#fff"/>
+  <!-- L in bottom-right -->
+  <path d="M38 32 H46 V44 H56 V52 H38 Z" fill="#fff"/>
+</svg>

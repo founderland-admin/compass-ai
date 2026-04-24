@@ -4,12 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Compass AI — Investor Readiness</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
 @font-face {
   font-family: 'Hanson';
-  src: url('uploads/Hanson-Bold.ttf') format('truetype');
+  src: url('/Hanson-Bold.ttf') format('truetype');
   font-weight: 700;
 }
 
@@ -46,7 +47,8 @@ body {
   letter-spacing: 0.01em;
 }
 
-/* ─── STICKY NAV ─────────────────────────────────────── */
+/* ─── FIXED NAV ─────────────────────────────────────── */
+body { padding-top: 64px; }
 .sticky-bar {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -54,22 +56,31 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 clamp(20px, 5vw, 64px);
-  height: 60px;
-  background: rgba(0,0,0,0.97);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-  transform: translateY(-100%);
-  transition: transform 0.3s ease;
+  padding: 0 clamp(20px, 5vw, 48px);
+  height: 64px;
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--mid);
+  transition: box-shadow 0.2s ease;
 }
-.sticky-bar.visible { transform: translateY(0); }
+.sticky-bar.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.04); }
 .sticky-logo {
   font-family: var(--font-display);
-  font-size: 13px;
-  letter-spacing: 0.1em;
+  font-size: 16px;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--white);
+  color: var(--black);
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sticky-logo::before {
+  content: "";
+  width: 22px; height: 22px;
+  background: url('/favicon.svg') center/cover no-repeat;
+  border-radius: 3px;
+  flex-shrink: 0;
 }
 .sticky-cta {
   background: var(--lime);
@@ -150,7 +161,7 @@ body {
 /* ─── HERO ───────────────────────────────────────────── */
 #hero {
   background: var(--white);
-  padding: 120px clamp(20px, 5vw, 64px) 80px;
+  padding: 72px clamp(20px, 5vw, 64px) 80px;
   border-bottom: 1px solid var(--mid);
 }
 #hero .inner {
@@ -1091,12 +1102,11 @@ footer {
 </div>
 
 <script>
-// Sticky nav
+// Fixed nav — add shadow when scrolled
 const stickyBar = document.getElementById('stickyBar');
-const heroEl = document.getElementById('hero');
-new IntersectionObserver(([e]) => {
-  stickyBar.classList.toggle('visible', !e.isIntersecting);
-}, { threshold: 0.1 }).observe(heroEl);
+const toggleShadow = () => stickyBar.classList.toggle('scrolled', window.scrollY > 12);
+toggleShadow();
+window.addEventListener('scroll', toggleShadow, { passive: true });
 
 // Cookie banner
 (function(){
