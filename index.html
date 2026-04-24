@@ -691,21 +691,101 @@ h1 {
 /* ─── FOOTER ─────────────────────────────────────────── */
 footer {
   background: var(--black);
-  padding: 28px clamp(20px, 5vw, 64px);
+  color: rgba(255,255,255,0.6);
+  padding: 48px clamp(20px, 5vw, 64px) 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.footer-logo {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+}
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.footer-links a {
+  color: rgba(255,255,255,0.55);
+  font-size: 13px;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: rgba(255,255,255,0.95); }
+.footer-bottom {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   gap: 12px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.08);
 }
-.footer-logo {
-  font-family: var(--font-display);
-  text-transform: uppercase;
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  color: rgba(255,255,255,0.25);
+.footer-copy { font-size: 12px; color: rgba(255,255,255,0.35); }
+.footer-tag { font-size: 12px; color: rgba(255,255,255,0.35); }
+
+/* ─── COOKIE BANNER ─────────────────────────────────── */
+.cookie-banner {
+  position: fixed;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  max-width: 520px;
+  margin: 0 auto;
+  background: var(--black);
+  color: rgba(255,255,255,0.85);
+  padding: 18px 20px;
+  border-radius: 10px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+  font-size: 13px;
+  line-height: 1.5;
+  display: none;
+  z-index: 9998;
+  animation: cookie-in 0.3s ease-out;
 }
-.footer-note { font-size: 12px; color: rgba(255,255,255,0.18); }
+.cookie-banner.visible { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; }
+.cookie-banner p { flex: 1 1 240px; margin: 0; color: rgba(255,255,255,0.75); }
+.cookie-banner a {
+  color: var(--lime);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.cookie-banner button {
+  background: var(--lime);
+  color: var(--black);
+  border: none;
+  padding: 9px 18px;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 13px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.cookie-banner button:hover { opacity: 0.85; }
+@keyframes cookie-in {
+  from { transform: translateY(20px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+@media (max-width: 520px) {
+  .cookie-banner { bottom: 12px; left: 12px; right: 12px; padding: 16px; }
+  .cookie-banner button { width: 100%; }
+}
 
 /* ─── MOBILE ─────────────────────────────────────────── */
 @media (max-width: 780px) {
@@ -718,6 +798,8 @@ footer {
   .cap-body { grid-column: 2; }
   #proof .inner { flex-direction: column; align-items: flex-start; gap: 20px; }
   .proof-div { width: 48px; height: 1px; }
+  .footer-top { flex-direction: column; gap: 20px; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 10px; }
 }
 </style>
 </head>
@@ -726,7 +808,7 @@ footer {
 <!-- STICKY BAR -->
 <div class="sticky-bar" id="stickyBar">
   <a href="#" class="sticky-logo">Compass AI</a>
-  <a href="#pricing" class="sticky-cta">Start free assessment</a>
+  <a href="/try/" target="_blank" rel="noopener" class="sticky-cta">Start free assessment</a>
 </div>
 
 <!-- ══════════════ HERO ══════════════ -->
@@ -737,7 +819,7 @@ footer {
       <h1>Know where your business breaks before you pitch.</h1>
       <p class="hero-sub">Structured questions. Direct feedback. The gaps investors will find — identified before you're in the room.</p>
       <div class="cta-row">
-        <a href="#pricing" class="btn-lime lg">Start free assessment</a>
+        <a href="/try/" target="_blank" rel="noopener" class="btn-lime lg">Start free assessment</a>
         <a href="#how" class="btn-outline-dark">See how it works</a>
       </div>
       <p class="hero-footnote"><strong>First 3 questions free.</strong> Full analysis €24</p>
@@ -819,7 +901,7 @@ footer {
     </div>
     <div class="upgrade-strip">
       <p>The first 3 questions show the gap. <strong>The next 7 show the full scope of that gap</strong> — and what to address before you pitch.</p>
-      <a href="#pricing" class="btn-lime">Start free assessment</a>
+      <a href="/try/" target="_blank" rel="noopener" class="btn-lime">Start free assessment</a>
     </div>
   </div>
 </section>
@@ -941,7 +1023,7 @@ footer {
           <li>Risk flags per answer</li>
           <li><strong>Enough to know whether you need the rest</strong></li>
         </ul>
-        <a href="#" class="btn-ghost-white">Start free</a>
+        <a href="/try/" target="_blank" rel="noopener" class="btn-ghost-white">Start free</a>
       </div>
       <div class="price-card featured">
         <div class="price-badge">Recommended</div>
@@ -955,7 +1037,7 @@ footer {
           <li>What to fix — per answer</li>
           <li><strong>Complete picture across all 10 questions</strong></li>
         </ul>
-        <a href="#" class="btn-lime-full">Start free assessment</a>
+        <a href="/try/" target="_blank" rel="noopener" class="btn-lime-full">Start free assessment</a>
       </div>
     </div>
     <div class="pricing-note">
@@ -981,15 +1063,32 @@ footer {
   <div class="inner">
     <h2 class="final-h2">Find out before an investor does.</h2>
     <p>The first three questions are free. They take under 10 minutes. They will tell you something about your business you didn't already know.</p>
-    <a href="#pricing" class="btn-black">Start free assessment</a>
+    <a href="/try/" target="_blank" rel="noopener" class="btn-black">Start free assessment</a>
     <p class="final-foot">First 3 questions free &nbsp;·&nbsp; Full analysis €24 &nbsp;·&nbsp; No subscription</p>
   </div>
 </section>
 
 <footer>
-  <div class="footer-logo">Compass AI</div>
-  <div class="footer-note">A Founderland product &nbsp;·&nbsp; founderland.org</div>
+  <div class="footer-top">
+    <a href="/" class="footer-logo">Compass AI</a>
+    <ul class="footer-links">
+      <li><a href="https://www.founderland.org/" target="_blank" rel="noopener">Founderland.org</a></li>
+      <li><a href="https://www.founderland.org/privacy" target="_blank" rel="noopener">Privacy</a></li>
+      <li><a href="/terms/">Terms of Use</a></li>
+      <li><a href="/cookies/">Cookies</a></li>
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">2026 © Founderland gUG (haftungsbeschränkt)</div>
+    <div class="footer-tag">A Founderland product</div>
+  </div>
 </footer>
+
+<!-- Cookie banner -->
+<div id="cookieBanner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie notice">
+  <p>We use cookies to understand how visitors use this site. See our <a href="/cookies/">cookie notice</a>.</p>
+  <button id="cookieAccept" type="button">Got it</button>
+</div>
 
 <script>
 // Sticky nav
@@ -998,6 +1097,25 @@ const heroEl = document.getElementById('hero');
 new IntersectionObserver(([e]) => {
   stickyBar.classList.toggle('visible', !e.isIntersecting);
 }, { threshold: 0.1 }).observe(heroEl);
+
+// Cookie banner
+(function(){
+  const banner = document.getElementById('cookieBanner');
+  const acceptBtn = document.getElementById('cookieAccept');
+  if (!banner || !acceptBtn) return;
+  const KEY = 'compass-cookie-ack';
+  try {
+    if (!localStorage.getItem(KEY)) {
+      setTimeout(() => banner.classList.add('visible'), 400);
+    }
+  } catch (e) {
+    setTimeout(() => banner.classList.add('visible'), 400);
+  }
+  acceptBtn.addEventListener('click', () => {
+    banner.classList.remove('visible');
+    try { localStorage.setItem(KEY, '1'); } catch (e) {}
+  });
+})();
 
 // Tweaks
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
